@@ -298,7 +298,7 @@
 
 /* ── Kuliner Card ────────────────────────── */
 .home-kuliner-card {
-    background: #111c31;
+    background: #44844d;
     border: 1px solid rgba(255,255,255,.07);
     border-radius: 20px;
     padding: 24px;
