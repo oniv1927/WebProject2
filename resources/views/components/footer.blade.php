@@ -60,7 +60,7 @@
         {{-- Bottom --}}
         <div class="footer-bottom">
             <p>&copy; 2024 Delta Brantas Sidoarjo. All rights reserved.</p>
-            <p>Dibangun dengan ❤️ untuk Sidoarjo</p>
+            <p>Dibangun dengan  untuk Sidoarjo</p>
         </div>
     </div>
 </footer>
