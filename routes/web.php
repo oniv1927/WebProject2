@@ -40,3 +40,17 @@ Route::post('/admin/api/culinaries', [App\Http\Controllers\AdminController::clas
 Route::put('/admin/api/culinaries/{id}', [App\Http\Controllers\AdminController::class, 'updateCulinary']);
 Route::patch('/admin/api/culinaries/{id}/toggle', [App\Http\Controllers\AdminController::class, 'toggleCulinaryStatus']);
 Route::delete('/admin/api/culinaries/{id}', [App\Http\Controllers\AdminController::class, 'destroyCulinary']);
+
+// Admin: Budaya (Destinations with category=budaya)
+Route::post('/admin/api/budaya', [App\Http\Controllers\AdminController::class, 'storeBudaya']);
+Route::put('/admin/api/budaya/{id}', [App\Http\Controllers\AdminController::class, 'updateBudaya']);
+Route::patch('/admin/api/budaya/{id}/toggle', [App\Http\Controllers\AdminController::class, 'toggleBudayaStatus']);
+Route::patch('/admin/api/budaya/{id}/featured', [App\Http\Controllers\AdminController::class, 'toggleBudayaFeatured']);
+Route::delete('/admin/api/budaya/{id}', [App\Http\Controllers\AdminController::class, 'destroyBudaya']);
+
+// Admin: Sejarah (Destinations with category=sejarah)
+Route::post('/admin/api/sejarah', [App\Http\Controllers\AdminController::class, 'storeSejarah']);
+Route::put('/admin/api/sejarah/{id}', [App\Http\Controllers\AdminController::class, 'updateSejarah']);
+Route::patch('/admin/api/sejarah/{id}/toggle', [App\Http\Controllers\AdminController::class, 'toggleSejarahStatus']);
+Route::patch('/admin/api/sejarah/{id}/featured', [App\Http\Controllers\AdminController::class, 'toggleSejarahFeatured']);
+Route::delete('/admin/api/sejarah/{id}', [App\Http\Controllers\AdminController::class, 'destroySejarah']);

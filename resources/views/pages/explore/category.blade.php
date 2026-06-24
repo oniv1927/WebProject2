@@ -9,7 +9,7 @@
     <x-hero
         :compact="true"
         :badge="$category->icon . ' ' . $category->name"
-        :title="'Menjelajahi ' . ($category->slug === 'wisata-alam' ? 'Nafas Alam' : ($category->slug === 'kuliner' ? 'Cita Rasa' : ($category->slug === 'budaya' ? 'Warisan Budaya' : 'Jejak Sejarah'))) . '<br><span class=\'highlight\'>di Delta Brantas</span>'"
+        :title="'Menjelajahi ' . ($category->slug === 'wisata-alam' ? 'Nafas Alam' : ($category->slug === 'kuliner' ? 'Cita Rasa' : ($category->slug === 'budaya-sejarah' ? 'Warisan & Jejak' : 'Warisan Budaya'))) . '<br><span class=\'highlight\'>di Delta Brantas</span>'"
         :description="$category->description"
         :image="$category->image"
     />
@@ -19,9 +19,9 @@
         <div class="container">
             <div class="explore-filter-pills reveal">
                 <a href="/explore" class="explore-pill">Semua</a>
-                @foreach($categories as $cat)
-                    <a href="/explore/{{ $cat->slug }}" class="explore-pill {{ $cat->slug === $category->slug ? 'active' : '' }}">{{ $cat->name }}</a>
-                @endforeach
+                <a href="/explore/wisata-alam" class="explore-pill {{ ($currentSlug ?? '') === 'wisata-alam' ? 'active' : '' }}">Wisata Alam</a>
+                <a href="/explore/kuliner" class="explore-pill {{ ($currentSlug ?? '') === 'kuliner' ? 'active' : '' }}">Kuliner</a>
+                <a href="/explore/budaya-sejarah" class="explore-pill {{ ($currentSlug ?? '') === 'budaya-sejarah' ? 'active' : '' }}">Budaya & Sejarah</a>
             </div>
 
             <div class="explore-search reveal" style="margin-top: 24px;">

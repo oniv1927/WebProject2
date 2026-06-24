@@ -48,9 +48,23 @@ class PageController extends Controller
 
         $allItems = $allDestinations->concat($allCulinary);
 
+        // Count for combined Budaya & Sejarah
+        $bsCategoryIds = Category::whereIn('slug', ['budaya', 'sejarah'])->pluck('id');
+        $budayaSejarahCount = Destination::whereIn('category_id', $bsCategoryIds)->where('status', 'Aktif')->count();
+
+        // Filter tabs for explore pages
+        $filterTabs = [
+            ['slug' => '', 'name' => 'Semua'],
+            ['slug' => 'wisata-alam', 'name' => 'Wisata Alam'],
+            ['slug' => 'kuliner', 'name' => 'Kuliner'],
+            ['slug' => 'budaya-sejarah', 'name' => 'Budaya & Sejarah'],
+        ];
+
         return view('pages.explore.index', [
             'categories' => $categories,
             'allItems' => $allItems,
+            'budayaSejarahCount' => $budayaSejarahCount,
+            'filterTabs' => $filterTabs,
         ]);
     }
 
@@ -58,10 +72,17 @@ class PageController extends Controller
     {
         $categories = Category::all();
 
+        // Filter tabs (consistent across all explore pages)
+        $filterTabs = [
+            ['slug' => '', 'name' => 'Semua'],
+            ['slug' => 'wisata-alam', 'name' => 'Wisata Alam'],
+            ['slug' => 'kuliner', 'name' => 'Kuliner'],
+            ['slug' => 'budaya-sejarah', 'name' => 'Budaya & Sejarah'],
+        ];
+
         if ($category_slug === 'kuliner') {
             $category = Category::where('slug', 'kuliner')->first();
             if (!$category) {
-                // If culinary is not a category in db, create a fake one
                 $category = (object)[
                     'name' => 'Wisata Kuliner',
                     'slug' => 'kuliner',
@@ -76,12 +97,32 @@ class PageController extends Controller
                 $regularItemsQuery->where('id', '!=', $featured->id);
             }
             $regularItems = $regularItemsQuery->get()->map(function($c) {
-                $c->category = (object)['slug' => 'kuliner']; // Fake relationship
+                $c->category = (object)['slug' => 'kuliner'];
                 return $c;
             });
             if ($featured) {
                  $featured->category = (object)['slug' => 'kuliner'];
             }
+        } elseif ($category_slug === 'budaya-sejarah') {
+            // Combined Budaya & Sejarah
+            $budayaCat = Category::where('slug', 'budaya')->first();
+            $sejarahCat = Category::where('slug', 'sejarah')->first();
+            $categoryIds = collect([$budayaCat, $sejarahCat])->filter()->pluck('id');
+
+            $category = (object)[
+                'name' => 'Budaya & Sejarah',
+                'slug' => 'budaya-sejarah',
+                'icon' => '🏛️',
+                'description' => 'Jelajahi warisan budaya dan situs bersejarah Delta Brantas.',
+                'image' => $budayaCat ? $budayaCat->image : '',
+            ];
+
+            $featured = Destination::whereIn('category_id', $categoryIds)->where('status', 'Aktif')->where('is_featured', 1)->first();
+            $regularItemsQuery = Destination::whereIn('category_id', $categoryIds)->where('status', 'Aktif');
+            if ($featured) {
+                $regularItemsQuery->where('id', '!=', $featured->id);
+            }
+            $regularItems = $regularItemsQuery->get();
         } else {
             $category = Category::where('slug', $category_slug)->firstOrFail();
             $featured = Destination::where('category_id', $category->id)->where('status', 'Aktif')->where('is_featured', 1)->first();
@@ -97,6 +138,8 @@ class PageController extends Controller
             'categories' => $categories,
             'featured' => $featured,
             'regularItems' => $regularItems,
+            'filterTabs' => $filterTabs,
+            'currentSlug' => $category_slug,
         ]);
     }
 
@@ -119,6 +162,21 @@ class PageController extends Controller
                 return $c;
             });
             $item->category = (object)['slug' => 'kuliner'];
+        } elseif ($category_slug === 'budaya-sejarah') {
+            $budayaCat = Category::where('slug', 'budaya')->first();
+            $sejarahCat = Category::where('slug', 'sejarah')->first();
+            $categoryIds = collect([$budayaCat, $sejarahCat])->filter()->pluck('id');
+
+            $category = (object)[
+                'name' => 'Budaya & Sejarah',
+                'slug' => 'budaya-sejarah',
+                'icon' => '🏛️',
+                'description' => 'Jelajahi warisan budaya dan situs bersejarah Delta Brantas.',
+                'image' => $budayaCat ? $budayaCat->image : '',
+            ];
+
+            $item = Destination::whereIn('category_id', $categoryIds)->where('slug', $item_slug)->where('status', 'Aktif')->firstOrFail();
+            $related = Destination::whereIn('category_id', $categoryIds)->where('slug', '!=', $item_slug)->where('status', 'Aktif')->take(3)->get();
         } else {
             $category = Category::where('slug', $category_slug)->firstOrFail();
             $item = Destination::where('category_id', $category->id)->where('slug', $item_slug)->where('status', 'Aktif')->firstOrFail();
@@ -166,16 +224,32 @@ class PageController extends Controller
 
     public function adminDashboard()
     {
-        // For admin dashboard, we load data from DB and pass to view as JSON
-        // so the JS can render it initially. We don't need localStorage anymore.
-        $destinations = Destination::orderBy('id', 'desc')->get();
+        $destinations = Destination::with('category')
+            ->whereHas('category', fn($q) => $q->where('slug', 'wisata-alam'))
+            ->orderBy('id', 'desc')->get();
+
+        $budayaCategory = Category::where('slug', 'budaya')->first();
+        $sejarahCategory = Category::where('slug', 'sejarah')->first();
+
+        $budayaItems = Destination::with('category')
+            ->where('category_id', $budayaCategory?->id)
+            ->orderBy('id', 'desc')->get();
+
+        $sejarahItems = Destination::with('category')
+            ->where('category_id', $sejarahCategory?->id)
+            ->orderBy('id', 'desc')->get();
+
         $culinaries = Culinary::orderBy('id', 'desc')->get();
         $articles = Article::orderBy('id', 'desc')->get();
 
         return view('pages.admin.dashboard', [
             'destinations' => $destinations,
+            'budayaItems' => $budayaItems,
+            'sejarahItems' => $sejarahItems,
             'culinaries' => $culinaries,
             'articles' => $articles,
+            'budayaCategoryId' => $budayaCategory?->id,
+            'sejarahCategoryId' => $sejarahCategory?->id,
         ]);
     }
 }
