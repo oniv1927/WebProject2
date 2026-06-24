@@ -19,31 +19,75 @@
         <div class="container">
             <div class="explore-filter-pills reveal">
                 <a href="/explore" class="explore-pill active">Semua</a>
-                @foreach($categories as $cat)
-                    <a href="/explore/{{ $cat->slug }}" class="explore-pill">{{ $cat->name }}</a>
-                @endforeach
+                <a href="/explore/wisata-alam" class="explore-pill">Wisata Alam</a>
+                <a href="/explore/kuliner" class="explore-pill">Kuliner</a>
+                <a href="/explore/budaya-sejarah" class="explore-pill">Budaya & Sejarah</a>
             </div>
 
             {{-- EXPLORE CATEGORY CARDS --}}
             <div class="explore-category-grid" style="margin-top: 48px;">
-                @foreach($categories as $cat)
-                    <a href="/explore/{{ $cat->slug }}" class="explore-category-card reveal reveal-delay-{{ $loop->iteration }}">
+                {{-- Wisata Alam --}}
+                @php
+                    $alamCat = $categories->firstWhere('slug', 'wisata-alam');
+                    $kulinerCat = $categories->firstWhere('slug', 'kuliner');
+                    $budayaCat = $categories->firstWhere('slug', 'budaya');
+                @endphp
+                @if($alamCat)
+                    <a href="/explore/wisata-alam" class="explore-category-card reveal reveal-delay-1">
                         <div class="explore-category-image">
-                            <img src="{{ $cat->image }}" alt="{{ $cat->name }}" loading="lazy">
+                            <img src="{{ $alamCat->image }}" alt="{{ $alamCat->name }}" loading="lazy">
                             <div class="explore-category-overlay"></div>
-                            <span class="explore-category-count">{{ $cat->destinations_count ?? 0 }} Destinasi</span>
+                            <span class="explore-category-count">{{ $alamCat->destinations_count ?? 0 }} Destinasi</span>
                         </div>
                         <div class="explore-category-body">
-                            <span class="explore-category-icon">{{ $cat->icon }}</span>
-                            <h3>{{ $cat->name }}</h3>
-                            <p>{{ $cat->description }}</p>
+                            <span class="explore-category-icon">{{ $alamCat->icon }}</span>
+                            <h3>{{ $alamCat->name }}</h3>
+                            <p>{{ $alamCat->description }}</p>
                             <span class="explore-category-link">
                                 Jelajahi
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                             </span>
                         </div>
                     </a>
-                @endforeach
+                @endif
+                {{-- Kuliner --}}
+                @if($kulinerCat)
+                    <a href="/explore/kuliner" class="explore-category-card reveal reveal-delay-2">
+                        <div class="explore-category-image">
+                            <img src="{{ $kulinerCat->image }}" alt="{{ $kulinerCat->name }}" loading="lazy">
+                            <div class="explore-category-overlay"></div>
+                            <span class="explore-category-count">{{ $kulinerCat->destinations_count ?? 0 }} Destinasi</span>
+                        </div>
+                        <div class="explore-category-body">
+                            <span class="explore-category-icon">{{ $kulinerCat->icon }}</span>
+                            <h3>{{ $kulinerCat->name }}</h3>
+                            <p>{{ $kulinerCat->description }}</p>
+                            <span class="explore-category-link">
+                                Jelajahi
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            </span>
+                        </div>
+                    </a>
+                @endif
+                {{-- Budaya & Sejarah (combined) --}}
+                @if($budayaCat)
+                    <a href="/explore/budaya-sejarah" class="explore-category-card reveal reveal-delay-3">
+                        <div class="explore-category-image">
+                            <img src="{{ $budayaCat->image }}" alt="Budaya & Sejarah" loading="lazy">
+                            <div class="explore-category-overlay"></div>
+                            <span class="explore-category-count">{{ $budayaSejarahCount ?? 0 }} Destinasi</span>
+                        </div>
+                        <div class="explore-category-body">
+                            <span class="explore-category-icon">🏛️</span>
+                            <h3>Budaya & Sejarah</h3>
+                            <p>Jelajahi warisan budaya dan situs bersejarah Delta Brantas.</p>
+                            <span class="explore-category-link">
+                                Jelajahi
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            </span>
+                        </div>
+                    </a>
+                @endif
             </div>
         </div>
     </section>
