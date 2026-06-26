@@ -35,7 +35,7 @@
                 @if($alamCat)
                     <a href="/explore/wisata-alam" class="explore-category-card reveal reveal-delay-1">
                         <div class="explore-category-image">
-                            <img src="{{ $alamCat->image }}" alt="{{ $alamCat->name }}" loading="lazy">
+                            <img src="@imgurl($alamCat->image)" alt="{{ $alamCat->name }}" loading="lazy">
                             <div class="explore-category-overlay"></div>
                             <span class="explore-category-count">{{ $alamCat->destinations_count ?? 0 }} Destinasi</span>
                         </div>
@@ -54,7 +54,7 @@
                 @if($kulinerCat)
                     <a href="/explore/kuliner" class="explore-category-card reveal reveal-delay-2">
                         <div class="explore-category-image">
-                            <img src="{{ $kulinerCat->image }}" alt="{{ $kulinerCat->name }}" loading="lazy">
+                            <img src="@imgurl($kulinerCat->image)" alt="{{ $kulinerCat->name }}" loading="lazy">
                             <div class="explore-category-overlay"></div>
                             <span class="explore-category-count">{{ $kulinerCat->destinations_count ?? 0 }} Destinasi</span>
                         </div>
@@ -73,7 +73,7 @@
                 @if($budayaCat)
                     <a href="/explore/budaya-sejarah" class="explore-category-card reveal reveal-delay-3">
                         <div class="explore-category-image">
-                            <img src="{{ $budayaCat->image }}" alt="Budaya & Sejarah" loading="lazy">
+                            <img src="@imgurl($budayaCat->image)" alt="Budaya & Sejarah" loading="lazy">
                             <div class="explore-category-overlay"></div>
                             <span class="explore-category-count">{{ $budayaSejarahCount ?? 0 }} Destinasi</span>
                         </div>

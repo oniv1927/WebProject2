@@ -45,7 +45,7 @@
 
             <div class="destination-card featured-card reveal">
                 <div class="destination-card-image featured-image">
-                    <img src="{{ $featured->image }}" alt="{{ $featured->name }}" loading="lazy">
+                    <img src="@imgurl($featured->image)" alt="{{ $featured->name }}" loading="lazy">
                     <div class="card-overlay"></div>
                     @if($featured->badge)
                         <span class="card-badge">{{ $featured->badge }}</span>

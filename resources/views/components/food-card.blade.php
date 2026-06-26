@@ -8,7 +8,7 @@
 
 <div class="food-card reveal">
     <div class="food-card-image">
-        <img src="{{ $image }}" alt="{{ $title }}" loading="lazy">
+        <img src="@imgurl($image)" alt="{{ $title }}" loading="lazy">
     </div>
     <div class="food-card-body">
         <h3>{{ $title }}</h3>

@@ -21,7 +21,7 @@
             <div class="detail-layout">
                 <div class="detail-main">
                     <div class="detail-hero-image reveal">
-                        <img src="{{ $culture['image'] }}" alt="{{ $culture['title'] }}">
+                        <img src="@imgurl($culture['image'])" alt="{{ $culture['title'] }}">
                     </div>
 
                     <div class="detail-content reveal">
@@ -52,7 +52,7 @@
                         <h4>Budaya Lainnya</h4>
                         @foreach($relatedCultures as $related)
                             <a href="/budaya/{{ $related['slug'] }}" class="sidebar-item">
-                                <img src="{{ $related['image'] }}" alt="{{ $related['title'] }}">
+                                <img src="@imgurl($related['image'])" alt="{{ $related['title'] }}">
                                 <div>
                                     <span>{{ $related['title'] }}</span>
                                     <small>{{ $related['category'] }}</small>

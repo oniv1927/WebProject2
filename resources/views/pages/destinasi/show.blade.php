@@ -24,7 +24,7 @@
                 {{-- Main Content --}}
                 <div class="detail-main">
                     <div class="detail-hero-image reveal">
-                        <img src="{{ $destination['image'] }}" alt="{{ $destination['title'] }}">
+                        <img src="@imgurl($destination['image'])" alt="{{ $destination['title'] }}">
                     </div>
 
                     <div class="detail-content reveal">
@@ -65,7 +65,7 @@
                         <h4>Destinasi Lainnya</h4>
                         @foreach($relatedDestinations as $related)
                             <a href="/destinasi/{{ $related['slug'] }}" class="sidebar-item">
-                                <img src="{{ $related['image'] }}" alt="{{ $related['title'] }}">
+                                <img src="@imgurl($related['image'])" alt="{{ $related['title'] }}">
                                 <div>
                                     <span>{{ $related['title'] }}</span>
                                     <small>{{ $related['location'] }}</small>

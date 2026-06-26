@@ -21,7 +21,7 @@
                 {{-- MAIN CONTENT --}}
                 <div class="detail-main">
                     <div class="detail-hero-image reveal">
-                        <img src="{{ $article->image }}" alt="{{ $article->title }}">
+                        <img src="@imgurl($article->image)" alt="{{ $article->title }}">
                     </div>
 
                     <div class="detail-meta reveal">
@@ -50,7 +50,7 @@
                         <h4>Berita Terkait</h4>
                         @foreach($related as $rel)
                             <a href="/berita/{{ $rel->slug }}" class="sidebar-item">
-                                <img src="{{ $rel->image }}" alt="{{ $rel->title }}" loading="lazy">
+                                <img src="@imgurl($rel->image)" alt="{{ $rel->title }}" loading="lazy">
                                 <div>
                                     <span>{{ $rel->title }}</span>
                                     <small>{{ \Carbon\Carbon::parse($rel->published_at)->translatedFormat('d M Y') }}</small>
