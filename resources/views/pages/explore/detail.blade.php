@@ -36,7 +36,7 @@
                 {{-- MAIN CONTENT --}}
                 <div class="detail-main">
                     <div class="detail-hero-image reveal">
-                        <img src="{{ $item->image }}" alt="{{ $item->name }}">
+                        <img src="@imgurl($item->image)" alt="{{ $item->name }}">
                     </div>
 
                     <div class="detail-meta reveal">
@@ -82,7 +82,7 @@
                         <h4>{{ $category->name }} Lainnya</h4>
                         @foreach($related as $rel)
                             <a href="/explore/{{ $category->slug }}/{{ $rel->slug }}" class="sidebar-item">
-                                <img src="{{ $rel->image }}" alt="{{ $rel->name }}" loading="lazy">
+                                <img src="@imgurl($rel->image)" alt="{{ $rel->name }}" loading="lazy">
                                 <div>
                                     <span>{{ $rel->name }}</span>
                                     <small>{{ $rel->location }}</small>

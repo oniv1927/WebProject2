@@ -10,7 +10,7 @@
 
 <div class="article-card reveal">
     <div class="article-card-image">
-        <img src="{{ $image }}" alt="{{ $title }}" loading="lazy">
+        <img src="@imgurl($image)" alt="{{ $title }}" loading="lazy">
     </div>
     <div class="article-card-body">
         <span class="article-date">{{ $date }}</span>

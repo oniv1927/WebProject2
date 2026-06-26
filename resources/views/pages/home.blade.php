@@ -62,7 +62,7 @@
                 @foreach($categories as $cat)
                     <a href="/explore/{{ $cat->slug }}" class="explore-category-card reveal reveal-delay-{{ $loop->iteration }}">
                         <div class="explore-category-image">
-                            <img src="{{ $cat->image }}" alt="{{ $cat->name }}" loading="lazy">
+                            <img src="@imgurl($cat->image)" alt="{{ $cat->name }}" loading="lazy">
                             <div class="explore-category-overlay"></div>
                             <span class="explore-category-count">{{ $cat->destinations_count }} Destinasi</span>
                         </div>
@@ -93,7 +93,7 @@
                     @foreach($destinations as $dest)
                         <a href="/explore/{{ $dest->category->slug }}/{{ $dest->slug }}" class="home-desti-card">
                             <div class="destination-card-image" style="height: 200px; overflow: hidden; position: relative;">
-                                <img src="{{ $dest->image }}" alt="{{ $dest->name }}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                                <img src="@imgurl($dest->image)" alt="{{ $dest->name }}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
                                 <div class="card-overlay" style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(17,28,49,1) 0%, transparent 100%);"></div>
                                 @if($dest->badge)
                                     <span class="card-badge" style="position: absolute; top: 12px; right: 12px; background: #22c55e; color: #fff; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700;">{{ $dest->badge }}</span>

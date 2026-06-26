@@ -11,7 +11,7 @@
 
 <div class="destination-card reveal">
     <div class="destination-card-image">
-        <img src="{{ $image }}" alt="{{ $title }}" loading="lazy">
+        <img src="@imgurl($image)" alt="{{ $title }}" loading="lazy">
         <div class="card-overlay"></div>
         @if($badge)
             <span class="card-badge">{{ $badge }}</span>

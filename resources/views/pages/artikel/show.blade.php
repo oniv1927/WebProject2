@@ -21,7 +21,7 @@
             <div class="detail-layout">
                 <div class="detail-main">
                     <div class="detail-hero-image reveal">
-                        <img src="{{ $article['image'] }}" alt="{{ $article['title'] }}">
+                        <img src="@imgurl($article['image'])" alt="{{ $article['title'] }}">
                     </div>
 
                     <div class="detail-content reveal">
@@ -52,7 +52,7 @@
                         <h4>Artikel Lainnya</h4>
                         @foreach($relatedArticles as $related)
                             <a href="/artikel/{{ $related['slug'] }}" class="sidebar-item">
-                                <img src="{{ $related['image'] }}" alt="{{ $related['title'] }}">
+                                <img src="@imgurl($related['image'])" alt="{{ $related['title'] }}">
                                 <div>
                                     <span>{{ $related['title'] }}</span>
                                     <small>{{ $related['date'] }}</small>

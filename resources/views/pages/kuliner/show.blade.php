@@ -21,7 +21,7 @@
             <div class="detail-layout">
                 <div class="detail-main">
                     <div class="detail-hero-image reveal">
-                        <img src="{{ $food['image'] }}" alt="{{ $food['title'] }}">
+                        <img src="@imgurl($food['image'])" alt="{{ $food['title'] }}">
                     </div>
 
                     <div class="detail-content reveal">
@@ -52,7 +52,7 @@
                         <h4>Kuliner Lainnya</h4>
                         @foreach($relatedFoods as $related)
                             <a href="/kuliner/{{ $related['slug'] }}" class="sidebar-item">
-                                <img src="{{ $related['image'] }}" alt="{{ $related['title'] }}">
+                                <img src="@imgurl($related['image'])" alt="{{ $related['title'] }}">
                                 <div>
                                     <span>{{ $related['title'] }}</span>
                                     <small>Kuliner Khas</small>
