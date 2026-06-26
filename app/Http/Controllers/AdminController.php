@@ -57,11 +57,9 @@ class AdminController extends Controller
             $data['image'] = $request->file('image')->store('images/destinations', 'public');
         }
         
-        // Random assign to Wisata Alam / Budaya / Sejarah
-        $cats = Category::whereIn('slug', ['wisata-alam', 'budaya', 'sejarah'])->pluck('id')->toArray();
-        if(count($cats) > 0) {
-            $data['category_id'] = $cats[array_rand($cats)];
-        }
+        // Always assign to Wisata Alam category
+        $wisataAlam = Category::where('slug', 'wisata-alam')->first();
+        $data['category_id'] = $wisataAlam?->id;
 
         $dest = Destination::create($data);
         $dest->load('category');
