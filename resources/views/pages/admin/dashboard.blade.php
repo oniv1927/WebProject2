@@ -687,6 +687,24 @@
                 </a>
             </div>
 
+            {{-- User Info Card --}}
+            <div class="admin-user-info reveal" style="display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px 24px;margin-bottom:32px;">
+                <div style="display:flex;align-items:center;gap:14px;">
+                    <div style="width:44px;height:44px;border-radius:50%;background:#22c55e;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#fff;font-weight:700;">{{ strtoupper(substr(auth()->user()->name, 0, 1)) }}</div>
+                    <div>
+                        <div style="font-weight:600;color:#fff;font-size:.95rem;">{{ auth()->user()->name }}</div>
+                        <div style="font-size:.8rem;color:#94a3b8;">{{ auth()->user()->email }} &bull; <span style="color:#22c55e;font-weight:600;">{{ ucfirst(auth()->user()->role) }}</span></div>
+                    </div>
+                </div>
+                <form method="POST" action="/logout">
+                    @csrf
+                    <button type="submit" style="display:flex;align-items:center;gap:8px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);color:#fca5a5;padding:8px 18px;border-radius:10px;cursor:pointer;font-family:inherit;font-size:.85rem;transition:all .2s;" onmouseover="this.style.background='rgba(239,68,68,.2)'" onmouseout="this.style.background='rgba(239,68,68,.1)'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                        Logout
+                    </button>
+                </form>
+            </div>
+
             {{-- Stats Overview --}}
             <div class="admin-stats-grid reveal">
                 <div class="admin-stat-card">
