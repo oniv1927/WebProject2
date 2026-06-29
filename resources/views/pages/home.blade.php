@@ -206,7 +206,7 @@
                                 <h4>{{ $k->name }}</h4>
                                 <span>{{ $k->category_type }}</span>
                                 @if($k->description)
-                                    <p style="font-size:.8rem;color:#64748b;margin-top:6px;line-height:1.5">{{ Str::limit($k->description, 60) }}</p>
+                                    <p style="font-size:.8rem;color:#ffffff;margin-top:6px;line-height:1.5">{{ Str::limit($k->description, 60) }}</p>
                                 @endif
                             </div>
                         </div>
@@ -331,7 +331,7 @@
 }
 .home-kuliner-info span {
     font-size: .78rem;
-    color: #64748b;
+    color: #ffffff;
     background: rgba(255,255,255,.05);
     padding: 2px 10px;
     border-radius: 6px;
