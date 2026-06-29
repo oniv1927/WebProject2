@@ -25,7 +25,17 @@
         <a href="/tentang" class="{{ request()->is('tentang*') ? 'active' : '' }}">Tentang</a>
         <a href="/explore" class="{{ request()->is('explore*') ? 'active' : '' }}">Explore</a>
         <a href="/berita" class="{{ request()->is('berita*') ? 'active' : '' }}">Berita</a>
-        <a href="/admin" class="btn btn-primary" style="margin-top: 16px;">Login Admin</a>
+        @auth
+            @if(auth()->user()->isAdmin())
+                <a href="/admin" class="btn btn-primary" style="margin-top: 16px;">Dashboard</a>
+            @endif
+            <form method="POST" action="/logout" style="margin-top: 8px;">
+                @csrf
+                <button type="submit" class="btn btn-outline" style="width:100%;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.2);cursor:pointer;font-family:inherit;padding:12px;border-radius:10px;">Logout</button>
+            </form>
+        @else
+            <a href="/login" class="btn btn-primary" style="margin-top: 16px;">Login</a>
+        @endauth
     </div>
 
     {{-- Main Content --}}

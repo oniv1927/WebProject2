@@ -16,7 +16,7 @@
 
 <section class="{{ $heroClass }}">
     <div class="hero-bg">
-        <img src="@imgurl($image)" alt="{{ $title }}">
+        <img src="@imgurl($image)" alt="{{ strip_tags($title) }}">
     </div>
     <div class="hero-overlay"></div>
 

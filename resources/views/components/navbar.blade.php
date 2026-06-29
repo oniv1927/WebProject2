@@ -22,7 +22,17 @@
         </div>
 
         <div class="navbar-cta">
-            <a href="/admin" class="btn btn-primary">Login Admin</a>
+            @auth
+                @if(auth()->user()->isAdmin())
+                    <a href="/admin" class="btn btn-primary" style="margin-right: 8px;">Dashboard</a>
+                @endif
+                <form method="POST" action="/logout" style="display:inline;">
+                    @csrf
+                    <button type="submit" class="btn btn-outline" style="background:transparent;color:#fff;border:1px solid rgba(255,255,255,.2);cursor:pointer;font-family:inherit;font-size:inherit;padding:10px 20px;border-radius:10px;">Logout</button>
+                </form>
+            @else
+                <a href="/login" class="btn btn-primary">Login</a>
+            @endauth
         </div>
 
         <button class="navbar-toggle" aria-label="Toggle navigation">
@@ -32,3 +42,4 @@
         </button>
     </div>
 </nav>
+

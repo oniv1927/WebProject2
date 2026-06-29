@@ -206,7 +206,7 @@ button {
 .navbar-menu a {
     font-size: .9rem;
     font-weight: 500;
-    color: var(--text-secondary);
+    color: #cbd5e1;
     position: relative;
     padding: 4px 0;
 }
