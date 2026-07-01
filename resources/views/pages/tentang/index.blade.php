@@ -11,7 +11,7 @@
         badge="Tentang Kami"
         title='Mengenal Lebih Dekat<br><span class="highlight">Delta Brantas Sidoarjo</span>'
         description="Sebuah kawasan strategis di muara Sungai Brantas yang menyimpan potensi wisata alam, budaya, dan kuliner luar biasa."
-        image="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2070&auto=format&fit=crop"
+        image="images/explore-hero.png"
     />
 
     {{-- TENTANG DELTA BRANTAS --}}
@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="about-preview-image reveal reveal-delay-2">
-                    <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=800&auto=format&fit=crop" alt="Delta Brantas Sidoarjo">
+                    <img src="@imgurl('images/jayandaru.jpg')" alt="Monumen Jayandaru Sidoarjo">
                     <blockquote class="about-quote">"Air yang mengalir membawa kehidupan, delta yang menetap menggugah niat."</blockquote>
                 </div>
             </div>

@@ -42,7 +42,8 @@
                     </a>
                 </div>
                 <div class="about-preview-image reveal reveal-delay-2">
-                    <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=800&auto=format&fit=crop" alt="Delta Brantas Sidoarjo">
+                    <img src="{{ asset('storage/images/fotokitablur/brantas.png') }}"
+     alt="Delta Brantas Sidoarjo">
                     <blockquote class="about-quote">"Air yang mengalir membawa kehidupan, delta yang menetap menggugah niat."</blockquote>
                 </div>
             </div>
