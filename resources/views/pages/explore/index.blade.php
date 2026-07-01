@@ -73,8 +73,7 @@
                 @if($budayaCat)
                     <a href="/explore/budaya-sejarah" class="explore-category-card reveal reveal-delay-3">
                         <div class="explore-category-image">
-                            <img src="{{ asset('storage/images/fotokitablur/brantas.png') }}"
-     alt="Delta Brantas Sidoarjo">
+                            <img src="@imgurl($budayaCat->image)" alt="Budaya & Sejarah" loading="lazy">
                             <div class="explore-category-overlay"></div>
                             <span class="explore-category-count">{{ $budayaSejarahCount ?? 0 }} Destinasi</span>
                         </div>
