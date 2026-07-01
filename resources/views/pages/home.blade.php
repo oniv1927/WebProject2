@@ -213,7 +213,7 @@
                     </div>
                 </div>
                 <div class="harmoni-image reveal reveal-delay-2">
-                    <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=800&auto=format&fit=crop" alt="Harmoni Delta Brantas">
+                    <img src="{{ asset('images/fotokitablur/brantas.png') }}" alt="Harmoni Delta Brantas">
                 </div>
             </div>
         </div>
