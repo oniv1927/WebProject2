@@ -11,7 +11,7 @@
 <nav class="navbar">
     <div class="container">
         <a href="/" class="navbar-brand">
-            <span class="brand-icon">🌊</span>
+            <img src="{{ asset('images/image.png') }}" alt="Logo" style="height: 36px; width: auto; object-fit: contain; margin-right: 8px;">
             <span>Delta Brantas</span>
         </a>
 

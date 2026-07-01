@@ -5,7 +5,7 @@
             {{-- About --}}
             <div class="footer-about">
                 <h3>
-                    <span class="footer-brand-icon">🌊</span>
+                    <img src="{{ asset('images/image.png') }}" alt="Delta Brantas Logo" style="height: 30px; width: auto; object-fit: contain; vertical-align: middle; margin-right: 8px;">
                     Delta Brantas Sidoarjo
                 </h3>
                 <p>
@@ -60,7 +60,7 @@
         {{-- Bottom --}}
         <div class="footer-bottom">
             <p>&copy; 2024 Delta Brantas Sidoarjo. All rights reserved.</p>
-            <p>Dibangun dengan  untuk Sidoarjo</p>
+            <p style="color: #ff69b4; font-weight: 500;">Dibangun dengan Cinta untuk Sidoarjo</p>
         </div>
     </div>
 </footer>

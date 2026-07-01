@@ -7,6 +7,7 @@ use App\Models\Destination;
 use App\Models\Culinary;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\MapLocation;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -378,6 +379,65 @@ class AdminController extends Controller
         $dest = Destination::findOrFail($id);
         $this->deleteImage($dest->image);
         $dest->delete();
+        return response()->json(['success' => true]);
+    }
+
+    // ── MAP LOCATIONS ──────────────────────────────
+
+    public function indexMapLocation()
+    {
+        return response()->json(MapLocation::orderBy('id', 'desc')->get());
+    }
+
+    public function storeMapLocation(Request $request)
+    {
+        $request->validate([
+            'name'      => 'required|string|max:255',
+            'category'  => 'required|in:alam,budaya,kuliner',
+            'latitude'  => 'required|numeric',
+            'longitude' => 'required|numeric',
+        ]);
+
+        $iconMap = ['alam' => '🌿', 'budaya' => '🏛️', 'kuliner' => '🍜'];
+
+        $loc = MapLocation::create([
+            'name'        => $request->name,
+            'category'    => $request->category,
+            'icon'        => $iconMap[$request->category],
+            'description' => $request->description ?? '',
+            'address'     => $request->address ?? '',
+            'latitude'    => $request->latitude,
+            'longitude'   => $request->longitude,
+            'status'      => $request->status ?? 'Aktif',
+        ]);
+
+        return response()->json($loc);
+    }
+
+    public function updateMapLocation(Request $request, $id)
+    {
+        $loc = MapLocation::findOrFail($id);
+
+        $iconMap = ['alam' => '🌿', 'budaya' => '🏛️', 'kuliner' => '🍜'];
+        $cat = $request->category ?? $loc->category;
+
+        $loc->update([
+            'name'        => $request->name ?? $loc->name,
+            'category'    => $cat,
+            'icon'        => $iconMap[$cat],
+            'description' => $request->description ?? $loc->description,
+            'address'     => $request->address ?? $loc->address,
+            'latitude'    => $request->latitude ?? $loc->latitude,
+            'longitude'   => $request->longitude ?? $loc->longitude,
+            'status'      => $request->status ?? $loc->status,
+        ]);
+
+        return response()->json($loc->fresh());
+    }
+
+    public function destroyMapLocation($id)
+    {
+        MapLocation::findOrFail($id)->delete();
         return response()->json(['success' => true]);
     }
 }
