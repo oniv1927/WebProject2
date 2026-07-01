@@ -59,7 +59,10 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($categories as $cat) {
-            \App\Models\Category::create($cat);
+            \App\Models\Category::updateOrCreate(
+                ['slug' => $cat['slug']],
+                $cat
+            );
         }
 
         // Destinasi (Alam, Budaya, Sejarah)
@@ -77,11 +80,14 @@ class DatabaseSeeder extends Seeder
             ['category_id' => $budaya, 'slug' => 'wayang-kulit', 'name' => 'Wayang Kulit', 'image' => 'https://images.unsplash.com/photo-1596402184320-4174ca1817e0?q=80&w=800&auto=format&fit=crop', 'badge' => 'Seni', 'location' => 'Sidoarjo, Jawa Timur', 'rating' => 4.7, 'description' => 'Seni pertunjukan wayang kulit yang masih aktif di beberapa desa budaya Sidoarjo.', 'is_featured' => false],
             // Sejarah
             ['category_id' => $sejarah, 'slug' => 'candi-pari', 'name' => 'Candi Pari', 'image' => 'https://images.unsplash.com/photo-1470770841497-7b3202ee5da8?q=80&w=800&auto=format&fit=crop', 'badge' => 'Majapahit', 'location' => 'Pari, Sidoarjo', 'rating' => 4.7, 'description' => 'Candi peninggalan Majapahit yang menyimpan sejarah panjang kerajaan Nusantara.', 'is_featured' => true],
-              ['category_id' => $sejarah, 'slug' => 'candi-trowulan', 'name' => 'Candi Trowulan', 'image' => 'https://images.unsplash.com/photo-1590123715937-e59c0b60c5c7?q=80&w=800&auto=format&fit=crop', 'badge' => 'Majapahit', 'location' => 'Trowulan, Sidoarjo', 'rating' => 4.6, 'description' => 'Kompleks candi peninggalan Kerajaan Majapahit dengan arsitektur yang megah.', 'is_featured' => false],
+            ['category_id' => $sejarah, 'slug' => 'candi-trowulan', 'name' => 'Candi Trowulan', 'image' => 'https://images.unsplash.com/photo-1590123715937-e59c0b60c5c7?q=80&w=800&auto=format&fit=crop', 'badge' => 'Majapahit', 'location' => 'Trowulan, Sidoarjo', 'rating' => 4.6, 'description' => 'Kompleks candi peninggalan Kerajaan Majapahit dengan arsitektur yang megah.', 'is_featured' => false],
         ];
 
         foreach ($destinations as $dest) {
-            \App\Models\Destination::create($dest);
+            \App\Models\Destination::updateOrCreate(
+                ['slug' => $dest['slug']],
+                $dest
+            );
         }
 
         // Kuliner
@@ -92,7 +98,10 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($culinaries as $cul) {
-            \App\Models\Culinary::create($cul);
+            \App\Models\Culinary::updateOrCreate(
+                ['slug' => $cul['slug']],
+                $cul
+            );
         }
 
         // Artikel
@@ -103,7 +112,10 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($articles as $art) {
-            \App\Models\Article::create($art);
+            \App\Models\Article::updateOrCreate(
+                ['slug' => $art['slug']],
+                $art
+            );
         }
     }
 }
