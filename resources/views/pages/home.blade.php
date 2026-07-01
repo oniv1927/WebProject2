@@ -60,20 +60,56 @@
             </div>
 
             <div class="explore-category-grid">
-                @foreach($categories as $cat)
-                    <a href="/explore/{{ $cat->slug }}" class="explore-category-card reveal reveal-delay-{{ $loop->iteration }}">
+                @php
+                    $alamCat = $categories->firstWhere('slug', 'wisata-alam');
+                    $kulinerCat = $categories->firstWhere('slug', 'kuliner');
+                    $budayaCat = $categories->firstWhere('slug', 'budaya');
+                @endphp
+                {{-- Wisata Alam --}}
+                @if($alamCat)
+                    <a href="/explore/wisata-alam" class="explore-category-card reveal reveal-delay-1">
                         <div class="explore-category-image">
-                            <img src="@imgurl($cat->image)" alt="{{ $cat->name }}" loading="lazy">
+                            <img src="@imgurl($alamCat->image)" alt="{{ $alamCat->name }}" loading="lazy">
                             <div class="explore-category-overlay"></div>
-                            <span class="explore-category-count">{{ $cat->destinations_count }} Destinasi</span>
+                            <span class="explore-category-count">{{ $alamCat->destinations_count ?? 0 }} Destinasi</span>
                         </div>
                         <div class="explore-category-body">
-                            <span class="explore-category-icon">{{ $cat->icon }}</span>
-                            <h3>{{ $cat->name }}</h3>
-                            <p>{{ $cat->description }}</p>
+                            <span class="explore-category-icon">{{ $alamCat->icon }}</span>
+                            <h3>{{ $alamCat->name }}</h3>
+                            <p>{{ $alamCat->description }}</p>
                         </div>
                     </a>
-                @endforeach
+                @endif
+                {{-- Kuliner --}}
+                @if($kulinerCat)
+                    <a href="/explore/kuliner" class="explore-category-card reveal reveal-delay-2">
+                        <div class="explore-category-image">
+                            <img src="@imgurl($kulinerCat->image)" alt="{{ $kulinerCat->name }}" loading="lazy">
+                            <div class="explore-category-overlay"></div>
+                            <span class="explore-category-count">{{ $kulinerCat->destinations_count ?? 0 }} Destinasi</span>
+                        </div>
+                        <div class="explore-category-body">
+                            <span class="explore-category-icon">{{ $kulinerCat->icon }}</span>
+                            <h3>{{ $kulinerCat->name }}</h3>
+                            <p>{{ $kulinerCat->description }}</p>
+                        </div>
+                    </a>
+                @endif
+                {{-- Budaya & Sejarah (combined) --}}
+                @if($budayaCat)
+                    <a href="/explore/budaya-sejarah" class="explore-category-card reveal reveal-delay-3">
+                        <div class="explore-category-image">
+                            <img src="@imgurl($budayaCat->image)" alt="Budaya & Sejarah" loading="lazy">
+                            <div class="explore-category-overlay"></div>
+                            <span class="explore-category-count">{{ $budayaSejarahCount ?? 0 }} Destinasi</span>
+                        </div>
+                        <div class="explore-category-body">
+                            <span class="explore-category-icon">🏛️</span>
+                            <h3>Budaya & Sejarah</h3>
+                            <p>Jelajahi warisan budaya, tradisi lokal, dan situs bersejarah Delta Brantas.</p>
+                        </div>
+                    </a>
+                @endif
             </div>
         </div>
     </section>
