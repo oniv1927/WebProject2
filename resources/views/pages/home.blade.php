@@ -42,8 +42,7 @@
                     </a>
                 </div>
                 <div class="about-preview-image reveal reveal-delay-2">
-                    <img src="{{ asset('storage/images/fotokitablur/brantas.png') }}"
-     alt="Delta Brantas Sidoarjo">
+                    <img src="{{ asset('images/fotokitablur/airbrantas.png') }}" alt="Delta Brantas Sidoarjo">
                     <blockquote class="about-quote">"Air yang mengalir membawa kehidupan, delta yang menetap menggugah niat."</blockquote>
                 </div>
             </div>
