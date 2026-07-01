@@ -11,7 +11,7 @@
 <nav class="navbar">
     <div class="container">
         <a href="/" class="navbar-brand">
-            <span class="brand-icon">🌊</span>
+            <img src="/storage/images/culinaries/image.png" alt="Delta Brantas Logo" style="height: 36px; width: auto; object-fit: contain;">
             <span>Delta Brantas</span>
         </a>
 
