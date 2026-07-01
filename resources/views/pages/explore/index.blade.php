@@ -267,8 +267,25 @@ const eFilters    = { alam: true, budaya: true, kuliner: true };
 
 exploreLocations.forEach(loc => {
     const catLabel = loc.category === 'alam' ? 'Wisata Alam' : loc.category === 'budaya' ? 'Budaya & Sejarah' : 'Kuliner';
+    
+    // Deteksi device iOS untuk mengarahkan ke Apple Maps, selain itu ke Google Maps
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    const mapUrl = isIOS 
+        ? `maps://?q=${encodeURIComponent(loc.title)}&ll=${loc.lat},${loc.lng}`
+        : `https://www.google.com/maps/search/?api=1&query=${loc.lat},${loc.lng}`;
+
     const m = L.marker([loc.lat, loc.lng], { icon: eIcons[loc.category] })
-        .bindPopup(`<div style="padding:2px"><div class="ep-title">${loc.icon} ${loc.title}</div><span class="ep-cat ${loc.category}">${catLabel}</span><div class="ep-desc">${loc.desc}</div><div class="ep-addr">📍 ${loc.alamat}</div></div>`, { maxWidth: 250 })
+        .bindPopup(`
+            <div style="padding:2px">
+                <div class="ep-title">${loc.icon} ${loc.title}</div>
+                <span class="ep-cat ${loc.category}">${catLabel}</span>
+                <div class="ep-desc">${loc.desc}</div>
+                <div class="ep-addr" style="margin-bottom:8px;">📍 ${loc.alamat}</div>
+                <a href="${mapUrl}" target="_blank" style="display:inline-flex;align-items:center;gap:6px;background:#22c55e;color:#fff;padding:6px 12px;border-radius:6px;font-size:11px;font-weight:700;text-decoration:none;">
+                    🚗 Rute Navigasi
+                </a>
+            </div>
+        `, { maxWidth: 250 })
         .addTo(eMap);
     eMarkers[loc.title] = m;
     eLayerGroups[loc.category].push(m);
