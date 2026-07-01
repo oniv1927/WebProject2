@@ -966,21 +966,23 @@
                     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
                     <div id="admin-preview-map" style="width:100%;height:340px;border-radius:12px;border:1px solid rgba(255,255,255,.08);margin-bottom:16px;"></div>
 
-                    {{-- Tabel Lokasi Terdaftar --}}
-                    <table class="admin-table">
-                        <thead>
-                            <tr>
-                                <th>Nama Lokasi</th>
-                                <th>Kategori</th>
-                                <th>Koordinat</th>
-                                <th>Status</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbodyPeta">
-                            {{-- diisi JS --}}
-                        </tbody>
-                    </table>
+                    {{-- Tabel Lokasi Terdaftar dengan Scroll --}}
+                    <div style="max-height: 280px; overflow-y: auto; border: 1px solid rgba(255,255,255,.05); border-radius: 8px;">
+                        <table class="admin-table" style="margin: 0;">
+                            <thead style="position: sticky; top: 0; background: var(--bg-card); z-index: 10;">
+                                <tr>
+                                    <th>Nama Lokasi</th>
+                                    <th>Kategori</th>
+                                    <th>Koordinat</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbodyPeta">
+                                {{-- diisi JS --}}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
             </div>
@@ -1970,8 +1972,8 @@ function initAdminPreviewMap() {
 
     if (!adminMap) {
         adminMap = L.map('admin-preview-map').setView([-7.4756, 112.7483], 11);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap', maxZoom: 19
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; CartoDB', maxZoom: 19
         }).addTo(adminMap);
     } else {
         adminMarkers.forEach(m => adminMap.removeLayer(m));

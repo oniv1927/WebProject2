@@ -10,7 +10,7 @@
         badge="Portal Wisata & Budaya"
         title='Mengenal Lebih Dekat<br><span class="highlight">Delta Brantas Sidoarjo</span>'
         description="Jelajahi kekayaan alam, budaya, dan kuliner khas kawasan Delta Brantas. Dari hutan mangrove hingga situs bersejarah, temukan pesona yang tak terlupakan."
-        image="https://images.unsplash.com/photo-1596402184320-4174ca1817e0?q=80&w=2070&auto=format&fit=crop"
+        image="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2073&auto=format&fit=crop"
         :buttons="[
             ['url' => '/explore', 'label' => 'Mulai Jelajah', 'style' => 'btn-primary', 'icon' => '<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'18\' height=\'18\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><circle cx=\'11\' cy=\'11\' r=\'8\'/><path d=\'m21 21-4.3-4.3\'/></svg>'],
             ['url' => '/tentang', 'label' => 'Pelajari Selengkapnya', 'style' => 'btn-outline'],
