@@ -13,6 +13,7 @@ Route::get('/explore/{category}', [PageController::class, 'exploreCategory'])->n
 Route::get('/explore/{category}/{slug}', [PageController::class, 'exploreDetail'])->name('explore.detail');
 Route::get('/berita', [PageController::class, 'beritaIndex'])->name('berita.index');
 Route::get('/berita/{slug}', [PageController::class, 'beritaDetail']);
+Route::get('/peta', [PageController::class, 'peta'])->name('peta');
 
 // ── Auth Routes ────────────────────────────
 
@@ -61,5 +62,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::patch('/admin/api/sejarah/{id}/toggle', [App\Http\Controllers\AdminController::class, 'toggleSejarahStatus']);
     Route::patch('/admin/api/sejarah/{id}/featured', [App\Http\Controllers\AdminController::class, 'toggleSejarahFeatured']);
     Route::delete('/admin/api/sejarah/{id}', [App\Http\Controllers\AdminController::class, 'destroySejarah']);
+
+    // Admin API: Map Locations (Peta Interaktif)
+    Route::get('/admin/api/map-locations', [App\Http\Controllers\AdminController::class, 'indexMapLocation']);
+    Route::post('/admin/api/map-locations', [App\Http\Controllers\AdminController::class, 'storeMapLocation']);
+    Route::put('/admin/api/map-locations/{id}', [App\Http\Controllers\AdminController::class, 'updateMapLocation']);
+    Route::delete('/admin/api/map-locations/{id}', [App\Http\Controllers\AdminController::class, 'destroyMapLocation']);
 });
 
