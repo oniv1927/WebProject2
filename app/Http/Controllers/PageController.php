@@ -27,11 +27,16 @@ class PageController extends Controller
         $articles = Article::where('status', 'Publikasi')->orderBy('published_at', 'desc')->take(3)->get();
         $culinaries = Culinary::where('status', 'Aktif')->take(3)->get();
 
+        // Combined Budaya + Sejarah count for Home category card
+        $bsCategoryIds = Category::whereIn('slug', ['budaya', 'sejarah'])->pluck('id');
+        $budayaSejarahCount = Destination::whereIn('category_id', $bsCategoryIds)->where('status', 'Aktif')->count();
+
         return view('pages.home', [
             'categories' => $categories,
             'destinations' => $destinations,
             'articles' => $articles,
             'culinaries' => $culinaries,
+            'budayaSejarahCount' => $budayaSejarahCount,
         ]);
     }
 
