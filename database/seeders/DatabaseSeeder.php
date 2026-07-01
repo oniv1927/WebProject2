@@ -32,34 +32,41 @@ class DatabaseSeeder extends Seeder
                 'slug' => 'wisata-alam',
                 'name' => 'Wisata Alam',
                 'icon' => '🌿',
-                'image' => 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=800&auto=format&fit=crop',
+                'image' => 'images/wisata-alam.jpg',
                 'description' => 'Jelajahi keindahan hutan mangrove, pantai, dan sungai Delta Brantas.',
             ],
             [
                 'slug' => 'kuliner',
                 'name' => 'Kuliner',
                 'icon' => '🍜',
+
                 'image' => 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=800&auto=format&fit=crop',
+
+                'image' => 'images/lontong-kupang.jpg',
+
                 'description' => 'Nikmati cita rasa otentik kuliner khas Sidoarjo yang melegenda.',
             ],
             [
                 'slug' => 'budaya',
                 'name' => 'Budaya',
                 'icon' => '🎭',
-                'image' => 'https://images.unsplash.com/photo-1528181304800-259b08848526?q=80&w=800&auto=format&fit=crop',
+                'image' => 'images/budaya-sejarah.png',
                 'description' => 'Kenali warisan budaya dan tradisi lokal Delta Brantas.',
             ],
             [
                 'slug' => 'sejarah',
                 'name' => 'Sejarah',
                 'icon' => '🏛️',
-                'image' => 'https://images.unsplash.com/photo-1590123715937-e59c0b60c5c7?q=80&w=800&auto=format&fit=crop',
+                'image' => 'images/budaya-sejarah.png',
                 'description' => 'Susuri situs bersejarah peninggalan era Majapahit di Sidoarjo.',
             ],
         ];
 
         foreach ($categories as $cat) {
-            \App\Models\Category::create($cat);
+            \App\Models\Category::updateOrCreate(
+                ['slug' => $cat['slug']],
+                $cat
+            );
         }
 
         // Destinasi (Alam, Budaya, Sejarah)
@@ -81,29 +88,42 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($destinations as $dest) {
-            \App\Models\Destination::create($dest);
+            \App\Models\Destination::updateOrCreate(
+                ['slug' => $dest['slug']],
+                $dest
+            );
         }
 
         // Kuliner
         $culinaries = [
+
             ['slug' => 'kupang-lontong', 'name' => 'Kupang Lontong', 'category_type' => 'Makanan', 'image' => 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?q=80&w=800&auto=format&fit=crop', 'badge' => 'Legendaris', 'location' => 'Sidoarjo Kota', 'rating' => 4.9, 'description' => 'Hidangan khas Sidoarjo dari kerang kecil dengan kuah segar, lontong, dan petis.', 'is_featured' => true],
+
+            ['slug' => 'kupang-lontong', 'name' => 'Kupang Lontong', 'category_type' => 'Makanan', 'image' => 'images/lontong-kupang.jpg', 'badge' => 'Legendaris', 'location' => 'Sidoarjo Kota', 'rating' => 4.9, 'description' => 'Hidangan khas Sidoarjo dari kerang kecil dengan kuah segar, lontong, dan petis.', 'is_featured' => true],
+
             ['slug' => 'petis-udang-sidoarjo', 'name' => 'Petis Udang Sidoarjo', 'category_type' => 'Bumbu', 'image' => 'https://images.unsplash.com/photo-1563379926898-0571a8a67e34?q=80&w=800&auto=format&fit=crop', 'badge' => 'Oleh-oleh', 'location' => 'Gedangan, Sidoarjo', 'rating' => 4.7, 'description' => 'Bumbu khas yang terbuat dari udang, pendamping sempurna untuk berbagai hidangan laut.', 'is_featured' => false],
             ['slug' => 'bandeng-asap', 'name' => 'Bandeng Asap', 'category_type' => 'Makanan', 'image' => 'https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?q=80&w=800&auto=format&fit=crop', 'badge' => 'Favorit', 'location' => 'Porong, Sidoarjo', 'rating' => 4.6, 'description' => 'Ikan bandeng yang diasap dengan teknik tradisional, menghasilkan cita rasa smoky yang khas.', 'is_featured' => false],
         ];
 
         foreach ($culinaries as $cul) {
-            \App\Models\Culinary::create($cul);
+            \App\Models\Culinary::updateOrCreate(
+                ['slug' => $cul['slug']],
+                $cul
+            );
         }
 
         // Artikel
         $articles = [
             ['slug' => 'festival-budaya-delta-brantas-2026', 'title' => 'Festival Budaya Delta Brantas 2026 Resmi Dibuka', 'image' => 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=800&auto=format&fit=crop', 'published_at' => '2026-06-15', 'excerpt' => 'Festival tahunan yang menampilkan seni, budaya, dan kuliner khas Sidoarjo kembali digelar dengan konsep yang lebih meriah.', 'status' => 'Publikasi'],
-            ['slug' => 'revitalisasi-hutan-mangrove', 'title' => 'Revitalisasi Hutan Mangrove Wonorejo Rampung', 'image' => 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=800&auto=format&fit=crop', 'published_at' => '2026-06-10', 'excerpt' => 'Program konservasi berhasil memperluas area mangrove dan menambah jalur trekking baru untuk wisatawan.', 'status' => 'Publikasi'],
+            ['slug' => 'revitalisasi-hutan-mangrove', 'title' => 'Revitalisasi Hutan Mangrove Wonorejo Rampung', 'image' => 'images/berita-mangrove.jpg', 'published_at' => '2026-06-10', 'excerpt' => 'Program konservasi berhasil memperluas area mangrove dan menambah jalur trekking baru untuk wisatawan.', 'status' => 'Publikasi'],
             ['slug' => 'umkm-kuliner-sertifikasi-halal', 'title' => '10 UMKM Kuliner Sidoarjo Raih Sertifikasi Halal', 'image' => 'https://images.unsplash.com/photo-1528181304800-259b08848526?q=80&w=800&auto=format&fit=crop', 'published_at' => '2026-06-05', 'excerpt' => 'Pemerintah daerah mendukung pelaku usaha kuliner dalam memperoleh sertifikasi halal.', 'status' => 'Draft'],
         ];
 
         foreach ($articles as $art) {
-            \App\Models\Article::create($art);
+            \App\Models\Article::updateOrCreate(
+                ['slug' => $art['slug']],
+                $art
+            );
         }
     }
 }

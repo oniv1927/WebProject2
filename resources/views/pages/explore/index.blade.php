@@ -97,7 +97,7 @@
         badge="Explore"
         title='Jelajahi Keajaiban<br><span class="highlight">Delta Brantas</span>'
         description="Temukan pengalaman wisata yang sesuai dengan minat Anda. Dari alam yang memukau hingga budaya yang kaya."
-        image="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2070&auto=format&fit=crop"
+        image="images/explore-hero.png"
     />
 
     {{-- CATEGORY FILTER PILLS --}}

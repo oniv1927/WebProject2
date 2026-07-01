@@ -25,6 +25,11 @@ class ImageHelper
             return $path;
         }
 
+        // If the file exists in public/ directly (e.g. public/images/xxx)
+        if (file_exists(public_path($path))) {
+            return asset($path);
+        }
+
         // Local storage path → resolve via asset('storage/...')
         return asset('storage/' . $path);
     }
