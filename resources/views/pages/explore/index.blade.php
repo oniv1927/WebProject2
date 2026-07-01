@@ -243,8 +243,8 @@ const eMap = L.map('explore-leaflet-map', {
     zoomControl: false
 }).setView([-7.4756, 112.7483], 12);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>',
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; CartoDB',
     maxZoom: 19
 }).addTo(eMap);
 

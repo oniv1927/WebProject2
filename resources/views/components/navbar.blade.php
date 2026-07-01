@@ -10,8 +10,8 @@
 
 <nav class="navbar">
     <div class="container">
-        <a href="/" class="nav-brand">
-            <img src="{{ asset('images/image.png') }}" alt="Logo" style="height: 32px; width: auto; object-fit: contain; margin-right: 8px;">
+        <a href="/" class="navbar-brand">
+            <img src="{{ asset('images/image.png') }}" alt="Logo" style="height: 36px; width: auto; object-fit: contain; margin-right: 8px;">
             <span>Delta Brantas</span>
         </a>
 

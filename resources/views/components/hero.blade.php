@@ -14,11 +14,8 @@
     $heroClass = 'hero' . ($compact ? ' hero-compact' : '');
 @endphp
 
-<section class="{{ $heroClass }}">
-    <div class="hero-bg">
-        <img src="@imgurl($image)" alt="" role="presentation">
-    </div>
-    <div class="hero-overlay"></div>
+<section class="{{ $heroClass }}" style="background: var(--bg-primary);">
+    <div class="hero-overlay" style="background: radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.05), transparent 70%);"></div>
 
     <div class="container">
         <div class="hero-content">
