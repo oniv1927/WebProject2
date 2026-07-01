@@ -11,7 +11,7 @@
         badge="Explore"
         title='Jelajahi Keajaiban<br><span class="highlight">Delta Brantas</span>'
         description="Temukan pengalaman wisata yang sesuai dengan minat Anda. Dari alam yang memukau hingga budaya yang kaya."
-        image="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2070&auto=format&fit=crop"
+        image="images/explore-hero.png"
     />
 
     {{-- CATEGORY FILTER PILLS --}}
@@ -73,7 +73,8 @@
                 @if($budayaCat)
                     <a href="/explore/budaya-sejarah" class="explore-category-card reveal reveal-delay-3">
                         <div class="explore-category-image">
-                            <img src="@imgurl($budayaCat->image)" alt="Budaya & Sejarah" loading="lazy">
+                            <img src="{{ asset('storage/images/fotokitablur/brantas.png') }}"
+     alt="Delta Brantas Sidoarjo">
                             <div class="explore-category-overlay"></div>
                             <span class="explore-category-count">{{ $budayaSejarahCount ?? 0 }} Destinasi</span>
                         </div>
