@@ -5,7 +5,7 @@
             {{-- About --}}
             <div class="footer-about">
                 <h3>
-                    <span class="footer-brand-icon">🌊</span>
+                    <img src="/storage/images/culinaries/image.png" alt="Delta Brantas Logo" style="height: 30px; width: auto; object-fit: contain; vertical-align: middle; margin-right: 8px;">
                     Delta Brantas Sidoarjo
                 </h3>
                 <p>
